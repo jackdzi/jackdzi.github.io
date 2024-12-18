@@ -11,7 +11,7 @@ function App() {
       <h2>
          Things I'm working on
       </h2>
-      <div style={{ display: 'flex', gap: '100px', justifyContent: 'center' }}>
+      <div style={{ display: 'flex', gap: '10px', justifyContent: 'center', flexWrap: 'wrap' }}>
         <div style={{ textAlign: 'center' }}>
           <button
             style={{
