@@ -1,7 +1,9 @@
-module.exports = {
+/** @type {import('tailwindcss').Config} */
+export default {
+  darkMode: 'class',
   content: [
-    './src/**/*.{html,js,jsx,ts,tsx}',
-    './public/index.html',
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}"
   ],
   theme: {
     extend: {
@@ -14,7 +16,7 @@ module.exports = {
           dark2: '#504945',
           dark3: '#665c54',
           dark4: '#7c6f64',
-          gray: '#928374',
+          gray_245: '#928374',
           light0_hard: '#f9f5d7',
           light0: '#fbf1c7',
           light0_soft: '#f2e5bc',
@@ -45,53 +47,7 @@ module.exports = {
           faded_orange: '#af3a03',
         },
       },
-      fontFamily: {
-        sans: ['Inter', 'system-ui', 'Avenir', 'Helvetica', 'Arial', 'sans-serif'],
-      },
-      fontWeight: {
-        normal: 400,
-        medium: 500,
-      },
-      lineHeight: {
-        base: 1.5,
-        tight: 1.1,
-      },
-      colors: {
-        link: '#646cff',
-        linkHover: '#535bf2',
-        bodyBg: '#282828',
-        bodyColor: 'rgba(255, 255, 255, 0.87)',
-        buttonBg: '#1a1a1a',
-        buttonBorderHover: '#646cff',
-        focusRing: '-webkit-focus-ring-color',
-        lightModeBodyBg: '#ffffff',
-        lightModeBodyColor: '#213547',
-        lightModeButtonBg: '#f9f9f9',
-        lightModeLinkHover: '#747bff',
-      },
-      borderRadius: {
-        button: '8px',
-      },
-      padding: {
-        button: '0.6em 1.2em',
-      },
-      fontSize: {
-        button: '1em',
-        h1: '3.2em',
-      },
-      transitionProperty: {
-        button: 'border-color',
-      },
-      transitionTimingFunction: {
-        button: 'ease',
-      },
-      transitionDuration: {
-        button: '250ms',
-      },
     },
   },
   plugins: [],
-  corePlugins: {
-    preflight: false, // Disable preflight to use custom reset styles
-  },
 }

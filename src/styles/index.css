@@ -1,0 +1,121 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  display: flex;
+  overflow-x: hidden;
+  justify-content: center;
+  align-items: center;
+  background-color: #ebdbb2;
+
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.dark {
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+
+@layer base {
+  h1, h2, h3, h4 {
+    @apply text-[#ebdbb2]
+  }
+}
+
+a {
+  font-weight: 500;
+  color: #242424;
+  text-decoration: inherit;
+}
+
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  text-align: center;
+}
+
+button {
+  border-radius: 8px;
+  border: 2px solid #242424;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: transparent;
+  cursor: pointer;
+  transition: border-color 0.25s;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+button:hover {
+  border-color: #d9b382;
+}
+
+.dark button:hover {
+  border-color: #d9b382;
+}
+
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: transparent;
+
+  }
+}
+
+.dark a {
+  color: #ebdbb2;
+}
+
+.dark button {
+  background-color: transparent;
+  border: 2px solid #ebdbb2;
+}
+
+
+.image-track {
+  display: flex;
+  gap: 6vmin;
+  top: 50%;
+  left: 50%;
+  user-select: none; /* -- Prevent image highlighting -- */
+}
+
+#image-track > .image {
+  width: 40vmin;
+  height: 56vmin;
+  object-fit: cover;
+  object-position: 0% center;
+}
