@@ -1,16 +1,26 @@
 import { useState, useRef, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
 import SplashScreen from "../SplashScreen/Splashscreen";
+import useScrollBlock from "./Scroll.tsx"
 import "./Welcome.css";
 
 function Welcome() {
   const [showSplash, setShowSplash] = useState(true);
   const nodeRef = useRef(null);
+  const [blockScroll, allowScroll] = useScrollBlock();
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowSplash(false), 3000);
-    return () => clearTimeout(timer);
-  }, []);
+    blockScroll();
+
+    const timer = setTimeout(() => {
+      allowScroll();
+      setShowSplash(false);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [allowScroll, blockScroll]);
 
   return (
     <CSSTransition

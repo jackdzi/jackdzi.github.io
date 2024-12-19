@@ -12,7 +12,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#282c34',
+    backgroundColor: '#242424',
     color: 'white',
     fontSize: '2rem',
     fontFamily: 'serif',
