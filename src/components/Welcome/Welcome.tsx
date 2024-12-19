@@ -15,7 +15,7 @@ function Welcome() {
     const timer = setTimeout(() => {
       allowScroll();
       setShowSplash(false);
-    }, 2000);
+    }, 500);
 
     return () => {
       clearTimeout(timer);
