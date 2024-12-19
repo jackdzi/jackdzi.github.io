@@ -1,61 +1,78 @@
 import { useRef, useEffect } from "react";
 
 const ImageTrack = () => {
-  const trackRef = useRef(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
 
-  // Event Handlers
-  const handleOnDown = (e: any) => {
-    trackRef.current.dataset.mouseDownAt = e.clientX;
+  const handleOnDown = (e: MouseEvent | TouchEvent) => {
+    const clientX = e instanceof MouseEvent ? e.clientX : e.touches[0].clientX;
+    if (trackRef.current) {
+      trackRef.current.dataset.mouseDownAt = clientX.toString();
+    }
   };
 
   const handleOnUp = () => {
-    trackRef.current.dataset.mouseDownAt = "0";
-    trackRef.current.dataset.prevPercentage =
-      trackRef.current.dataset.percentage;
+    if (trackRef.current) {
+      trackRef.current.dataset.mouseDownAt = "0";
+      trackRef.current.dataset.prevPercentage =
+        trackRef.current.dataset.percentage || "0";
+    }
   };
 
-  const handleOnMove = (e: any) => {
-    if (trackRef.current.dataset.mouseDownAt === "0") return;
-    const mouseDelta =
-      parseFloat(trackRef.current.dataset.mouseDownAt) - e.clientX;
-    const maxDelta = window.innerWidth / 2;
-    const percentage = (mouseDelta / maxDelta) * 100;
-    const nextPercentage = Math.max(
-      0,
-      Math.min(
-        100,
-        parseFloat(trackRef.current.dataset.prevPercentage) + percentage,
-      ),
-    );
+  const handleOnMove = (e: MouseEvent | TouchEvent) => {
+    const clientX = e instanceof MouseEvent ? e.clientX : e.touches[0].clientX;
+    if (trackRef.current) {
+      if (trackRef.current.dataset.mouseDownAt === "0") return;
 
-    trackRef.current.dataset.percentage = nextPercentage;
-    trackRef.current.animate(
-      { transform: `translate(-${nextPercentage}%, 0%)` },
-      { duration: 1200, fill: 'forwards' }
-    );
-    for (const image of trackRef.current.getElementsByClassName("image")) {
-      image.animate(
-        { objectPosition: `${nextPercentage}% 50%` },
-        { duration: 1200, fill: 'forwards' }
+      const mouseDelta =
+        parseFloat(trackRef.current.dataset.mouseDownAt || "0") - clientX;
+      const maxDelta = window.innerWidth / 2;
+      const percentage = (mouseDelta / maxDelta) * 100;
+      const nextPercentage = Math.max(
+        0,
+        Math.min(
+          100,
+          parseFloat(trackRef.current.dataset.prevPercentage || "0") + percentage
+        )
       );
+
+      trackRef.current.dataset.percentage = nextPercentage.toString();
+      trackRef.current.animate(
+        { transform: `translate(-${nextPercentage}%, 0%)` },
+        { duration: 1200, fill: "forwards" }
+      );
+      for (const image of trackRef.current.getElementsByClassName("image")) {
+        image.animate(
+          { objectPosition: `${nextPercentage}% 50%` },
+          { duration: 1200, fill: "forwards" }
+        );
+      }
     }
   };
 
   useEffect(() => {
-    const track = trackRef.current;
+    const onMouseDown = (e: MouseEvent) => handleOnDown(e);
+    const onMouseMove = (e: MouseEvent) => handleOnMove(e);
+    const onMouseUp = () => handleOnUp();
+    const onTouchStart = (e: TouchEvent) => handleOnDown(e);
+    const onTouchMove = (e: TouchEvent) => handleOnMove(e);
+    const onTouchEnd = () => handleOnUp();
 
-    // Add global event listeners
-    window.addEventListener("mouseup", handleOnUp);
-    window.addEventListener("mousemove", handleOnMove);
-    window.addEventListener("touchend", handleOnUp);
-    window.addEventListener("touchmove", handleOnMove);
+    // Add event listeners for mouse and touch
+    window.addEventListener("mousedown", onMouseDown);
+    window.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("mouseup", onMouseUp);
+    window.addEventListener("touchstart", onTouchStart);
+    window.addEventListener("touchmove", onTouchMove);
+    window.addEventListener("touchend", onTouchEnd);
 
     return () => {
-      // Clean up event listeners
-      window.removeEventListener("mouseup", handleOnUp);
-      window.removeEventListener("mousemove", handleOnMove);
-      window.removeEventListener("touchend", handleOnUp);
-      window.removeEventListener("touchmove", handleOnMove);
+      // Remove event listeners
+      window.removeEventListener("mousedown", onMouseDown);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseup", onMouseUp);
+      window.removeEventListener("touchstart", onTouchStart);
+      window.removeEventListener("touchmove", onTouchMove);
+      window.removeEventListener("touchend", onTouchEnd);
     };
   }, []);
 
@@ -67,8 +84,6 @@ const ImageTrack = () => {
         data-mouse-down-at="0"
         data-prev-percentage="0"
         className="image-track flex justify-center items-center"
-        onMouseDown={handleOnDown}
-        onTouchStart={(e) => handleOnDown(e.touches[0])}
       >
         {/* Replace the images below with your own */}
         <img
@@ -83,12 +98,7 @@ const ImageTrack = () => {
           alt="img2"
           draggable="false"
         />
-        <img
-          className="image"
-          src="/mathhw.jpg"
-          alt="img3"
-          draggable="false"
-        />
+        <img className="image" src="/mathhw.jpg" alt="img3" draggable="false" />
         <img
           className="image"
           src="/405pres.jpg"
@@ -96,7 +106,7 @@ const ImageTrack = () => {
           draggable="false"
         />
       </div>
-</div>
+    </div>
   );
 };
 

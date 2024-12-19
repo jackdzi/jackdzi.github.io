@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom"; // Use react-router-dom for navigation
+// import { useEffect, useState } from "react";
+// import { Link, useLocation } from "react-router-dom"; // Use react-router-dom for navigation
 import ThemeToggle from "../Darkmode/Darkmode";
-import menuData from "./menuData";
+// import menuData from "./menuData";
 
 const Header = () => {
 
