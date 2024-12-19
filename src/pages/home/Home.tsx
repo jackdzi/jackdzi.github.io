@@ -6,7 +6,6 @@ import "../../styles/index.css";
 const Home = () => {
   return (
     <>
-      <Welcome />
       <Projects />
       <Showcase />
     </>

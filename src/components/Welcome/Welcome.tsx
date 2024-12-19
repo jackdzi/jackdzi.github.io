@@ -42,7 +42,7 @@ const Welcome: React.FC = () => {
       backgroundColor: "black",
       borderRadius: "50%",
       position: "absolute" as const,
-      transition: `transform ${Math.random() * 0.5 + 0.1}s ease-in-out`,
+      transition: 'transform 0.2s ease-in-out',
       transform: `translate(${Math.cos(angle) * distance}px, ${Math.sin(angle) * distance}px)`,
 
     };

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import projectData from "./projects_data.tsx";
 
 function Projects() {
@@ -10,7 +9,10 @@ function Projects() {
         <div className="card mb-2.5 flex flex-wrap">
           {projectData.map((project) => (
             <div key={project.id} className="mb-2.5 w-full sm:w-auto flex flex-col items-center px-4">
-              <button>
+              <button className="transition-all duration-300"
+          onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.1)')}
+          onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
+              >
                 <a
                   href={project.link}
                   className="text-beige"

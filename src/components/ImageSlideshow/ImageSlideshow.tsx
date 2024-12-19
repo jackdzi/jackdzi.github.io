@@ -60,7 +60,7 @@ const ImageTrack = () => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center transform translate-x-1/2">
+    <div className="flex justify-center items-center transform translate-x-1/2 max-width-100vw">
       <div
         id="image-track"
         ref={trackRef}
