@@ -1,0 +1,18 @@
+.splash-enter {
+  opacity: 0;
+  transform: scale(0.9);
+}
+.splash-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 500ms, transform 500ms;
+}
+.splash-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+.splash-exit-active {
+  opacity: 0;
+  transform: scale(0.9);
+  transition: opacity 500ms, transform 500ms;
+}

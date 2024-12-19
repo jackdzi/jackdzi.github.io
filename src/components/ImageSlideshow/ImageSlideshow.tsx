@@ -1,4 +1,5 @@
 import { useRef, useEffect } from "react";
+import images from './imageData.tsx'
 
 const ImageTrack = () => {
   const trackRef = useRef<HTMLDivElement | null>(null);
@@ -74,38 +75,27 @@ const ImageTrack = () => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center transform translate-x-1/2 max-width-100vw">
+    <div className="flex justify-center items-center transform translate-x-1/2 max-w-full">
       <div
         id="image-track"
         ref={trackRef}
-        data-mouse-down-at={0}
-        data-prev-percentage={0}
+        data-mouse-down-at="0"
+        data-prev-percentage="0"
         className="image-track flex justify-center items-center"
         onMouseDown={handleOnDown}
         onTouchStart={(e) => {
           handleOnDown(e.touches[0]);
         }}
       >
-        {/* Replace the images below with your own */}
-        <img
-          className="image"
-          src="/333final.jpg"
-          alt="img1"
-          draggable="false"
-        />
-        <img
-          className="image"
-          src="/extracredit.jpg"
-          alt="img2"
-          draggable="false"
-        />
-        <img className="image" src="/mathhw.jpg" alt="img3" draggable="false" />
-        <img
-          className="image"
-          src="/405pres.jpg"
-          alt="img3"
-          draggable="false"
-        />
+        {images.map((image, index) => (
+          <img
+            key={index}
+            className={'image rounded-[30px]'}
+            src={image.src}
+            alt={image.alt}
+            draggable="false"
+          />
+        ))}
       </div>
     </div>
   );
