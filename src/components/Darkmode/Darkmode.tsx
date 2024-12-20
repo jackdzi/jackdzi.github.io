@@ -19,7 +19,7 @@ const ThemeToggle = () => {
   return (
       <div className="text-center">
         <button
-          className="bg-transparent dark:bg-transparent transition-all duration-300 border-none dark:border-none outline-none"
+          className="bg-transparent after:bg-transparent dark:bg-transparent transition-all duration-300 border-none dark:border-none outline-none"
           onMouseOver={(e) => (e.currentTarget.style.transform = 'scale(1.5)')}
           onMouseOut={(e) => (e.currentTarget.style.transform = 'scale(1)')}
           onClick={() => setIsDarkMode(!isDarkMode)}

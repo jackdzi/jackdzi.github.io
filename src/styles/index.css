@@ -11,7 +11,7 @@
   overflow-x: hidden;
   justify-content: center;
   align-items: center;
-  background-color: #ebdbb2;
+  background-color: #d5c4a1;
 
   color-scheme: light dark;
 
@@ -55,7 +55,7 @@ div.arrow {
   }
 
   &:hover::before {
-    border-color: orange;
+    border-color: #90EE90;
     transform: scale(0.8);
   }
 }
@@ -76,7 +76,7 @@ div.fadeOut {
 }
 
 .dark div.arrow:hover::before {
-  border-color: orange;
+  border-color: #90EE90;
 }
 
 a {
@@ -102,6 +102,102 @@ h1 {
   text-align: center;
 }
 
+
+/* CSS */
+.button-56 {
+  align-items: center;
+  border: 2px solid beige;
+  border-radius: 8px;
+  box-sizing: border-box;
+  color: #111;
+  cursor: pointer;
+  display: flex;
+  font-family: Inter,serif;
+  font-size: 16px;
+  height: 48px;
+  justify-content: center;
+  line-height: 24px;
+  max-width: 100%;
+  padding: 0 25px;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-56:after {
+  background-color: #111;
+  border-radius: 8px;
+  content: "";
+  display: block;
+  height: 48px;
+  left: 0;
+  width: 100%;
+  position: absolute;
+  top: -2px;
+  transform: translate(8px, 8px);
+  transition: transform .2s ease-out;
+  z-index: -1;
+}
+
+.button-56:hover:after {
+  transform: translate(0, 0);
+}
+
+.button-56:active {
+  background-color: transparent;
+  outline: 0;
+}
+
+.button-56:hover {
+  outline: 0;
+}
+
+@media (min-width: 768px) {
+  .button-56 {
+    padding: 0 40px;
+  }
+}
+
+/* CSS */
+.button-89 {
+  --b: 3px;   /* border thickness */
+  --s: .45em; /* size of the corner */
+  --color: #373B44;
+
+  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
+  color: var(--color);
+  --_p: var(--s);
+  background:
+    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
+    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+  transition: .3s linear, color 0s, background-color 0s;
+  outline: var(--b) solid #0000;
+  outline-offset: .6em;
+  font-size: 16px;
+
+  border: 0;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-89:hover,
+.button-89:focus-visible{
+  --_p: 0px;
+  outline-color: var(--color);
+  outline-offset: .05em;
+}
+
+.button-89:active {
+  background: var(--color);
+  color: #fff;
+}
+
+
 button {
   border-radius: 8px;
   border: 2px solid #242424;
@@ -118,11 +214,9 @@ button {
 }
 
 button:hover {
-  border-color: gray;
 }
 
 .dark button:hover {
-  border-color: gray;
 }
 
 button:focus,
