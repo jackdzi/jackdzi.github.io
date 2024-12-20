@@ -2,7 +2,6 @@ import { useState, useRef, useEffect } from "react";
 import images from "./imageData.tsx";
 
 const ImageTrack = () => {
-  const [isArrowClicked, setIsArrowClicked] = useState(false);
   const [isArrowVisible, setIsArrowVisible] = useState(true);
 
   const trackRef = useRef<HTMLDivElement | null>(null);
@@ -62,7 +61,6 @@ const ImageTrack = () => {
     }
   };
   const handleArrowRemoval = () => {
-    setIsArrowClicked(true);
 
     setTimeout(() => {
       setIsArrowVisible(false);
