@@ -49,7 +49,7 @@ const ImageTrack = () => {
 
       trackRef.current.dataset.percentage = nextPercentage.toString();
       trackRef.current.animate(
-        { transform: `translate(-${nextPercentage + 4}%, 0%)` },
+        { transform: `translate(-${nextPercentage + 9}%, 0%)` },
         { duration: 1200, fill: "forwards" },
       );
       for (const image of trackRef.current.getElementsByClassName("image")) {
