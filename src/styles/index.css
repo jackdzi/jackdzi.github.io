@@ -39,24 +39,37 @@ div.arrow {
   box-sizing: border-box;
   position: relative;
   transform: rotate(45deg);
+  opacity: 1;
+  transition: opacity 0.5s ease;
 
   &::before {
     content: '';
     width: 5vw;
     height: 5vw;
-    border-width: .8vmin .8vmin 0 0;
+    border-width: 0.8vmin 0.8vmin 0 0;
     border-style: solid;
     border-color: black;
-    transition: .2s ease;
+    transition: transform 0.2s ease, border-color 0.2s ease;
     display: block;
     transform-origin: 100% 0;
   }
 
   &:hover::before {
     border-color: orange;
-    transform: scale(.8);
+    transform: scale(0.8);
   }
 }
+
+div.fadeOut {
+  animation: fadeOut 1s forwards;
+}
+
+@keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+
 
 .dark div.arrow::before {
   border-color: white;

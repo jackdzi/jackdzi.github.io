@@ -8,10 +8,10 @@ const Hero = () => {
       <Dots />
       <div style={styles.contentContainer as CSSProperties}>
         <div style={styles.textContainer as CSSProperties}>
-          <div className="flex justify-left items-center w-full h-full pb-4">
+          <div className="flex justify-left  w-full h-full pb-4">
             <StaggeredText
-              text="Hi, I'm Jack"
-              className="text-4xl font-serif font-bold text-center text-white leading-tight m-0"
+              text="I'm Jack"
+              className="text-5xl font-serif font-bold text-center text-white leading-tight m-0"
               last={true}
               delay={0}
               small={false}
@@ -19,7 +19,7 @@ const Hero = () => {
           </div>
           <StaggeredText
             text="Please give me a job"
-            className="text-left"
+            className="text-left font-serif text-2xl"
             delay={1000}
             last={false}
             small={true}

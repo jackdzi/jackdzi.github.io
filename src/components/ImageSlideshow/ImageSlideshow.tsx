@@ -1,12 +1,16 @@
-import { useRef, useEffect } from "react";
-import images from './imageData.tsx'
+import { useState, useRef, useEffect } from "react";
+import images from "./imageData.tsx";
 
 const ImageTrack = () => {
+  const [isArrowClicked, setIsArrowClicked] = useState(false);
+  const [isArrowVisible, setIsArrowVisible] = useState(true);
+
   const trackRef = useRef<HTMLDivElement | null>(null);
 
   // Event Handlers
   const handleOnDown = (e: any) => {
     if (trackRef.current) {
+      handleArrowRemoval();
       trackRef.current.dataset.mouseDownAt = e.clientX;
     }
   };
@@ -46,7 +50,7 @@ const ImageTrack = () => {
 
       trackRef.current.dataset.percentage = nextPercentage.toString();
       trackRef.current.animate(
-        { transform: `translate(-${nextPercentage}%, 0%)` },
+        { transform: `translate(-${nextPercentage + 4}%, 0%)` },
         { duration: 1200, fill: "forwards" },
       );
       for (const image of trackRef.current.getElementsByClassName("image")) {
@@ -57,19 +61,26 @@ const ImageTrack = () => {
       }
     }
   };
+  const handleArrowRemoval = () => {
+    setIsArrowClicked(true);
+
+    setTimeout(() => {
+      setIsArrowVisible(false);
+    }, 300);
+  };
 
   const handleArrowClick = () => {
+    handleArrowRemoval();
     if (trackRef.current) {
-      const prevPercentage = parseFloat(trackRef.current.dataset.prevPercentage || "0");
-      const mouseDelta = 150; // 50px to the left
+      const prevPercentage = parseFloat(
+        trackRef.current.dataset.prevPercentage || "0",
+      );
+      const mouseDelta = 250;
       const maxDelta = window.innerWidth / 2;
       const percentage = (mouseDelta / maxDelta) * 100;
       const nextPercentage = Math.max(
         0,
-        Math.min(
-          100,
-          prevPercentage + percentage,
-        ),
+        Math.min(100, prevPercentage + percentage),
       );
 
       trackRef.current.dataset.percentage = nextPercentage.toString();
@@ -104,34 +115,38 @@ const ImageTrack = () => {
   }, []);
 
   return (
-      <>
-    <div className="justify-center items-center flex flex-col">
-      <div className="flex justify-center items-center transform translate-x-1/2 max-w-full p-4 relative">
-        <div className="arrow" style={{ transform: 'translateX(-47vw) rotate(45deg)' }} onClick={handleArrowClick}></div>
-        <div
-          id="image-track"
-          ref={trackRef}
-          data-mouse-down-at="0"
-          data-prev-percentage="0"
-          className="image-track flex justify-center items-center"
-          onMouseDown={handleOnDown}
-          onTouchStart={(e) => {
-            handleOnDown(e.touches[0]);
-          }}
-        >
-          {images.map((image, index) => (
-            <img
-              key={index}
-              className={'image rounded-[30px]'}
-              src={image.src}
-              alt={image.alt}
-              draggable="false"
-            />
-          ))}
+    <>
+      <div className="justify-center items-center flex flex-col pb-4">
+        <div className="flex justify-center items-center transform translate-x-[50%] max-w-full p-4 relative">
+          <div
+            className={`arrow ${isArrowVisible ? "" : "fadeOut"}`}
+            style={{ transform: "translateX(-49vw) rotate(45deg)" }}
+            onClick={handleArrowClick}
+          ></div>
+          <div
+            id="image-track"
+            ref={trackRef}
+            data-mouse-down-at="0"
+            data-prev-percentage="0"
+            className="image-track flex justify-center items-center"
+            onMouseDown={handleOnDown}
+            onTouchStart={(e) => {
+              handleOnDown(e.touches[0]);
+            }}
+          >
+            {images.map((image, index) => (
+              <img
+                key={index}
+                className={"image rounded-[30px]"}
+                src={image.src}
+                alt={image.alt}
+                draggable="false"
+              />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
-</>
+    </>
   );
 };
 

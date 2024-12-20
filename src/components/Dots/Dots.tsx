@@ -53,7 +53,7 @@ const CanvasDots: React.FC = () => {
           this.y = Math.random() * canvas.height;
           this.vx = -0.5 + Math.random();
           this.vy = -0.5 + Math.random();
-          this.color = Math.random() < 0.02 ? lightGreenDot : colorDot;
+          this.color = Math.random() < 0.045 ? lightGreenDot : colorDot;
           this.radius =
             this.color == lightGreenDot ? Math.random() * 2.5 : Math.random();
         }

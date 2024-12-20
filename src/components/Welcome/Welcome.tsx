@@ -33,15 +33,17 @@ function Welcome() {
               <span></span>
               <span></span>
               <span></span>
+              <span></span>
             </div>
           </div>
         ) : (
           <div className="preloader">
             <div className="texts-container">
-              <span>Welcome </span>
-              <span>To </span>
-              <span>My</span>
-              <span>Portfolio</span>
+              <span>Welcome! </span>
+              <span> </span>
+              <span>Glad</span>
+              <span>You're</span>
+              <span>Here</span>
             </div>
           </div>
         )}
