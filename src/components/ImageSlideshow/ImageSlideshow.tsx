@@ -15,7 +15,7 @@ const ImageTrack = () => {
     if (trackRef.current) {
       trackRef.current.dataset.mouseDownAt = "0";
       trackRef.current.dataset.prevPercentage =
-        trackRef.current.dataset.percentage;
+        trackRef.current.dataset.percentage || "0";
     }
   };
 
@@ -58,6 +58,35 @@ const ImageTrack = () => {
     }
   };
 
+  const handleArrowClick = () => {
+    if (trackRef.current) {
+      const prevPercentage = parseFloat(trackRef.current.dataset.prevPercentage || "0");
+      const mouseDelta = 150; // 50px to the left
+      const maxDelta = window.innerWidth / 2;
+      const percentage = (mouseDelta / maxDelta) * 100;
+      const nextPercentage = Math.max(
+        0,
+        Math.min(
+          100,
+          prevPercentage + percentage,
+        ),
+      );
+
+      trackRef.current.dataset.percentage = nextPercentage.toString();
+      trackRef.current.dataset.prevPercentage = nextPercentage.toString();
+      trackRef.current.animate(
+        { transform: `translate(-${nextPercentage}%, 0%)` },
+        { duration: 900, fill: "forwards", easing: "ease-in-out" },
+      );
+      for (const image of trackRef.current.getElementsByClassName("image")) {
+        image.animate(
+          { objectPosition: `${nextPercentage}% 50%` },
+          { duration: 900, fill: "forwards", easing: "ease-in-out" },
+        );
+      }
+    }
+  };
+
   useEffect(() => {
     // Add global event listeners
     window.addEventListener("mouseup", handleOnUp);
@@ -75,29 +104,34 @@ const ImageTrack = () => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center transform translate-x-1/2 max-w-full">
-      <div
-        id="image-track"
-        ref={trackRef}
-        data-mouse-down-at="0"
-        data-prev-percentage="0"
-        className="image-track flex justify-center items-center"
-        onMouseDown={handleOnDown}
-        onTouchStart={(e) => {
-          handleOnDown(e.touches[0]);
-        }}
-      >
-        {images.map((image, index) => (
-          <img
-            key={index}
-            className={'image rounded-[30px]'}
-            src={image.src}
-            alt={image.alt}
-            draggable="false"
-          />
-        ))}
+      <>
+    <div className="justify-center items-center flex flex-col">
+      <div className="flex justify-center items-center transform translate-x-1/2 max-w-full p-4 relative">
+        <div className="arrow" style={{ transform: 'translateX(-47vw) rotate(45deg)' }} onClick={handleArrowClick}></div>
+        <div
+          id="image-track"
+          ref={trackRef}
+          data-mouse-down-at="0"
+          data-prev-percentage="0"
+          className="image-track flex justify-center items-center"
+          onMouseDown={handleOnDown}
+          onTouchStart={(e) => {
+            handleOnDown(e.touches[0]);
+          }}
+        >
+          {images.map((image, index) => (
+            <img
+              key={index}
+              className={'image rounded-[30px]'}
+              src={image.src}
+              alt={image.alt}
+              draggable="false"
+            />
+          ))}
+        </div>
       </div>
     </div>
+</>
   );
 };
 

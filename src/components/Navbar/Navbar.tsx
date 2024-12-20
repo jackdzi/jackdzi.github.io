@@ -6,7 +6,7 @@ import ThemeToggle from "../Darkmode/Darkmode";
 const Header = () => {
 
   return (
-    <div className="absolute top-0 right-0 p-4">
+    <div className="fixed top-0 right-0 p-4 z-50">
       <ThemeToggle />
     </div>
   );

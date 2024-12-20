@@ -4,7 +4,7 @@ function Projects() {
   return (
     <div className="flex flex-col items-center pt-16 py-2.5">
       <div className="mb-2.5"></div>
-      <h1 className="mb-2.5 font-serif text-black dark:text-white">Things I'm working on</h1>
+      <h1 className="mb-2.5 font-serif text-black dark:text-white w-4/5">Things I'm working on</h1>
       <div className="mt-4">
         <div className="card mb-2.5 flex flex-wrap">
           {projectData.map((project) => (

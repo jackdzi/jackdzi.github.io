@@ -25,7 +25,7 @@ const ThemeToggle = () => {
           onClick={() => setIsDarkMode(!isDarkMode)}
         >
           {
-            isDarkMode ? <IoSunny style={{ color: 'black' }} /> : <IoMoon />
+            isDarkMode ? <IoSunny  /> : <IoMoon />
           }
         </button>
       </div>

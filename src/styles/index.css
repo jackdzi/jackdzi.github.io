@@ -32,6 +32,40 @@
   }
 }
 
+
+div.arrow {
+  width: 5vmin;
+  height: 5vmin;
+  box-sizing: border-box;
+  position: relative;
+  transform: rotate(45deg);
+
+  &::before {
+    content: '';
+    width: 5vw;
+    height: 5vw;
+    border-width: .8vmin .8vmin 0 0;
+    border-style: solid;
+    border-color: black;
+    transition: .2s ease;
+    display: block;
+    transform-origin: 100% 0;
+  }
+
+  &:hover::before {
+    border-color: orange;
+    transform: scale(.8);
+  }
+}
+
+.dark div.arrow::before {
+  border-color: white;
+}
+
+.dark div.arrow:hover::before {
+  border-color: orange;
+}
+
 a {
   font-weight: 500;
   color: #242424;
@@ -39,13 +73,14 @@ a {
 }
 
 
-body {
+body, html {
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
   overflow-x: hidden;
+  overscroll-behavior: contain;
 }
 
 h1 {

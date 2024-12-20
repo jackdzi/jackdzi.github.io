@@ -1,39 +1,52 @@
-import { useState, useRef, useEffect } from "react";
-import { CSSTransition } from "react-transition-group";
-import SplashScreen from "../SplashScreen/Splashscreen";
-import useScrollBlock from "./Scroll.tsx"
+import { useState, useEffect } from "react";
+import useScrollBlock from "./Scroll.tsx";
 import "./Welcome.css";
+import { preLoaderAnim } from "./animations";
 
 function Welcome() {
-  const [showSplash, setShowSplash] = useState(true);
-  const nodeRef = useRef(null);
   const [blockScroll, allowScroll] = useScrollBlock();
+  const [showFirstPreloader, setShowFirstPreloader] = useState(true);
 
   useEffect(() => {
+    preLoaderAnim();
     blockScroll();
-
-    const timer = setTimeout(() => {
+    const firstPreloaderTimer = setTimeout(() => {
+      setShowFirstPreloader(false);
+    }, 100);
+    const allowScrollTimer = setTimeout(() => {
       allowScroll();
-      setShowSplash(false);
-    }, 500);
+    }, 5200); // replace 5200 with your desired delay time in milliseconds
 
     return () => {
-      clearTimeout(timer);
+      clearTimeout(firstPreloaderTimer);
+      clearTimeout(allowScrollTimer);
     };
-  }, [allowScroll, blockScroll]);
+  }, []);
 
   return (
-    <CSSTransition
-      in={showSplash}
-      timeout={500}
-      classNames="splash"
-      unmountOnExit
-      nodeRef={nodeRef}
-    >
-      <div ref={nodeRef} className="splash-screen">
-        <SplashScreen />
-      </div>
-    </CSSTransition>
+    <>
+      <>
+        {showFirstPreloader ? (
+          <div className="preloader">
+            <div className="texts-container">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        ) : (
+          <div className="preloader">
+            <div className="texts-container">
+              <span>Welcome </span>
+              <span>To </span>
+              <span>My</span>
+              <span>Portfolio</span>
+            </div>
+          </div>
+        )}
+      </>
+    </>
   );
 }
 
