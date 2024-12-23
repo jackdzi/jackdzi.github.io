@@ -32,6 +32,31 @@
   }
 }
 
+@layer utilities {
+
+  .card-wrapper {
+    @apply relative bg-gradient-to-b from-slate-700 to-slate-800 rounded-xl
+    overflow-hidden;
+  }
+
+  .card-wrapper::before {
+    background: conic-gradient(
+        from 0deg,
+        rgba(0, 0, 139, 1), /* Dark Blue */
+        rgba(144, 238, 144, 1), /* Pale Green */
+        rgba(0, 0, 139, 1)
+    );
+
+    @apply absolute h-[730%] w-[150%] left-[-20%] top-[-300%] content-[''] animate-border-spin;
+  }
+
+  .card-content {
+    @apply relative dark:bg-[#1a1a1a] bg-[#e0d7c6] p-4 rounded-lg
+  }
+
+
+}
+
 
 div.arrow {
   width: 5vmin;
@@ -197,6 +222,18 @@ h1 {
   color: #fff;
 }
 
+@property --gradient-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inhereits: false;
+}
+
+
+.gradient-background {
+    background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+}
+
+
 
 button {
   border-radius: 8px;
@@ -213,30 +250,8 @@ button {
   margin-right: auto;
 }
 
-button:hover {
-}
 
-.dark button:hover {
-}
 
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: transparent;
-
-  }
-}
 
 .dark a {
   color: #ebdbb2;

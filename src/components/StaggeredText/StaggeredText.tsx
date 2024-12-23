@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
-const StaggeredText = ({ text, className, delay, last, small}: { text: string; className: string, delay: number, last: boolean, small: boolean }) => {
+const StaggeredText = ({ text, className, delay, last, small, stagger}: { text: string; className: string, delay: number, last: boolean, small: boolean, stagger: number}) => {
   const [animationStart, setAnimationStart] = useState(false);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const StaggeredText = ({ text, className, delay, last, small}: { text: string; c
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.11,
+        staggerChildren: stagger,
       },
     },
   };

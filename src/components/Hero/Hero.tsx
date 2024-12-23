@@ -4,24 +4,34 @@ import { CSSProperties } from 'react';
 
 const Hero = () => {
   return (
-    <div style={styles.heroContainer as CSSProperties}>
+    <div className="relative w-full h-screen overflow-hidden flex justify-center items-center bg-[#1D1D4D]">
       <Dots />
-      <div style={styles.contentContainer as CSSProperties}>
+      <div className="flex justify-between items-center gap-5 p-12 pt-15 relative z-10">
         <div style={styles.textContainer as CSSProperties}>
-          <div className="flex justify-left  w-full h-full pb-4">
+          <div className="flex justify-left w-full h-full pb-4">
             <StaggeredText
               text="I'm Jack"
-              className="text-5xl font-serif font-bold text-center text-white leading-tight m-0"
+              className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-center text-white leading-tight m-0"
               last={true}
               delay={0}
+              stagger={0.11}
               small={false}
             />
           </div>
           <StaggeredText
-            text="Please give me a job"
-            className="text-left font-serif text-2xl"
+            text="Sophomore @ Rice University,"
+            className="text-white text-left font-serif text-xl md:text-2xl lg:text-3xl"
             delay={1000}
             last={false}
+            stagger={0.04}
+            small={true}
+          />
+          <StaggeredText
+            text="Mathematics and Computer Science"
+            className="text-white text-left font-serif text-xl md:text-2xl lg:text-3xl"
+            delay={2000}
+            last={false}
+            stagger={0.04}
             small={true}
           />
         </div>
@@ -30,6 +40,7 @@ const Hero = () => {
             src="/Jack_Dzialo.jpg"
             alt="Hero Banner"
             className="rounded-full"
+            style={{ width: '90%', height: 'auto' }}
           />
         </div>
       </div>
@@ -38,16 +49,6 @@ const Hero = () => {
 };
 
 const styles = {
-  heroContainer: {
-    position: "relative",
-    width: '100%',
-    height: '100vh',
-    overflow: "hidden",
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#1D1D4D',
-  },
   contentContainer: {
     display: "flex",
     justifyContent: "space-between",
