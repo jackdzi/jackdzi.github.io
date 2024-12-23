@@ -20,7 +20,7 @@ const About: React.FC = () => {
         <div className="flex-1 p-4 flex flex-col justify-center items-center">
           <img
             className="rounded-lg"
-            src="../../../public/amp.jpg"
+            src="/amp.jpg"
             alt="About Me"
             draggable="false"
           />
