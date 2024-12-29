@@ -17,9 +17,14 @@ function Welcome() {
       allowScroll();
     }, 5200); // replace 5200 with your desired delay time in milliseconds
 
+    const colorTimer = setTimeout(() => {
+      document.documentElement.style.setProperty('--bgcolor', "#d5c4a1");
+    }, 1000);
+
     return () => {
       clearTimeout(firstPreloaderTimer);
       clearTimeout(allowScrollTimer);
+      clearTimeout(colorTimer);
     };
   }, []);
 

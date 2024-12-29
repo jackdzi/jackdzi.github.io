@@ -11,7 +11,8 @@
   overflow-x: hidden;
   justify-content: center;
   align-items: center;
-  background-color: #d5c4a1;
+  --bgcolor: #242424;
+  background-color: var(--bgcolor);
 
   color-scheme: light dark;
 
@@ -51,7 +52,7 @@
   }
 
   .card-content {
-    @apply relative dark:bg-[#1a1a1a] bg-[#e0d7c6] p-4 rounded-lg
+    @apply relative dark:bg-[#1a1a1a] bg-[#e5d5b5] p-4 rounded-lg
   }
 
 

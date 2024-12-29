@@ -1,4 +1,3 @@
-
 import React, { useEffect, useRef } from "react";
 
 const CanvasDots: React.FC = () => {
@@ -131,7 +130,7 @@ const CanvasDots: React.FC = () => {
       }
 
       animationFrameId = requestAnimationFrame(() => {
-        setTimeout(createDots, 60);
+        setTimeout(createDots, 30);
       });
     };
 

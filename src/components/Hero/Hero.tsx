@@ -3,46 +3,84 @@ import Dots from "../Dots/Dots";
 import { CSSProperties } from 'react';
 
 const Hero = () => {
+
+  const handleArrowClick = () => {
+    const startPosition = window.scrollY;
+    const targetPosition = window.innerHeight;
+
+    if (startPosition === targetPosition) return;
+
+    const distance = targetPosition - startPosition;
+    const duration = 800;
+    let startTime: number | null = null;
+
+    const easeInOutQuad = (t: number) => {
+      return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    };
+
+    const animateScroll = (currentTime: number) => {
+      if (!startTime) startTime = currentTime;
+      const elapsedTime = currentTime - startTime;
+      const progress = Math.min(elapsedTime / duration, 1);
+      const easing = easeInOutQuad(progress);
+
+      window.scrollTo(0, startPosition + distance * easing);
+
+      if (progress < 1) {
+        requestAnimationFrame(animateScroll);
+      }
+    };
+
+    requestAnimationFrame(animateScroll);
+  };
+
   return (
     <div className="relative w-full h-screen overflow-hidden flex justify-center items-center bg-[#1D1D4D]">
       <Dots />
-      <div className="flex justify-between items-center gap-5 p-12 pt-15 relative z-10">
-        <div style={styles.textContainer as CSSProperties}>
-          <div className="flex justify-left w-full h-full pb-4">
+      <div className="flex flex-col justify-center items-center gap-5 p-12 pt-15 relative z-10">
+        <div className="flex justify-between items-center gap-5 w-full">
+          <div style={styles.textContainer as CSSProperties}>
+            <div className="flex justify-left w-full h-full pb-4">
+              <StaggeredText
+                text="I'm Jack"
+                className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-center text-white leading-tight m-0"
+                last={true}
+                delay={0}
+                stagger={0.11}
+                small={false}
+              />
+            </div>
             <StaggeredText
-              text="I'm Jack"
-              className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-center text-white leading-tight m-0"
-              last={true}
-              delay={0}
-              stagger={0.11}
-              small={false}
+              text="Sophomore @ Rice University,"
+              className="text-white text-left font-serif text-xl md:text-2xl lg:text-3xl"
+              delay={1000}
+              last={false}
+              stagger={0.025}
+              small={true}
+            />
+            <StaggeredText
+              text="Mathematics and Computer Science"
+              className="text-white text-left font-serif text-xl md:text-2xl lg:text-3xl"
+              delay={1700}
+              last={false}
+              stagger={0.025}
+              small={true}
             />
           </div>
-          <StaggeredText
-            text="Sophomore @ Rice University,"
-            className="text-white text-left font-serif text-xl md:text-2xl lg:text-3xl"
-            delay={1000}
-            last={false}
-            stagger={0.04}
-            small={true}
-          />
-          <StaggeredText
-            text="Mathematics and Computer Science"
-            className="text-white text-left font-serif text-xl md:text-2xl lg:text-3xl"
-            delay={2000}
-            last={false}
-            stagger={0.04}
-            small={true}
-          />
+          <div className="w-2/5">
+            <img
+              src="/Jack_Dzialo.jpg"
+              alt="Hero Banner"
+              className="rounded-full"
+              style={{ width: '90%', height: 'auto' }}
+            />
+          </div>
         </div>
-        <div className="w-2/5">
-          <img
-            src="/Jack_Dzialo.jpg"
-            alt="Hero Banner"
-            className="rounded-full"
-            style={{ width: '90%', height: 'auto' }}
-          />
-        </div>
+        <div
+          className="arrow mt-5"
+          style={{ transform: 'rotate(135deg) translateY(-250px) translateX(250px)', position: 'absolute' }}
+          onClick={handleArrowClick}
+        ></div>
       </div>
     </div>
   );
