@@ -6,7 +6,6 @@ const ImageTrack = () => {
 
   const trackRef = useRef<HTMLDivElement | null>(null);
 
-  // Event Handlers
   const handleOnDown = (e: any) => {
     if (trackRef.current) {
       handleArrowRemoval();
@@ -113,8 +112,10 @@ const ImageTrack = () => {
   }, []);
 
   return (
-    <>
-      <div className="justify-center items-center flex flex-col pb-4">
+      <div className="justify-center items-center flex flex-col pb-4 mt-[300px] mb-[150px]">
+      <h2 className="text-3xl mb-2.5 font-mono text-black dark:text-white font-bold text-center">
+        Click and drag to see some of my designs!
+      </h2>
         <div className="flex justify-center items-center transform translate-x-[50%] max-w-full p-4 relative">
           <div
             className={`arrow ${isArrowVisible ? "" : "fadeOut"}`}
@@ -144,7 +145,6 @@ const ImageTrack = () => {
           </div>
         </div>
       </div>
-    </>
   );
 };
 

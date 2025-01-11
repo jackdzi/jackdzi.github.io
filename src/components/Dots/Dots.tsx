@@ -28,7 +28,7 @@ const CanvasDots: React.FC = () => {
 
     function calculateRadiusNumber() {
       const factor = window.innerWidth * window.innerHeight;
-      return Math.floor((330 / (1920 * 1080)) * factor);
+      return Math.floor((230 / (1920 * 1080)) * factor);
     }
 
     const dots = {
@@ -130,7 +130,7 @@ const CanvasDots: React.FC = () => {
       }
 
       animationFrameId = requestAnimationFrame(() => {
-        setTimeout(createDots, 30);
+        setTimeout(createDots, 20);
       });
     };
 

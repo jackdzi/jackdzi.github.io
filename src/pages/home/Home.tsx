@@ -5,7 +5,6 @@ import Navbar from "../../components/Navbar/Navbar";
 import Hero from "../../components/Hero/Hero";
 import About from "../../components/About/About";
 import Footer from "../../components/Footer/Footer";
-import { Fade } from "react-awesome-reveal";
 import "../../styles/index.css";
 
 const Home = () => {
@@ -14,15 +13,10 @@ const Home = () => {
       <Welcome />
       <Hero />
       <Navbar />
-      <Fade>
-        <About />
-      </Fade>
-      <Fade>
-        <Projects />
-      </Fade>
-      <Fade>
-        <Showcase />
-      </Fade>
+      <About />
+      <Projects />
+      <div className="my-32"></div>
+      <Showcase />
       <Footer />
     </>
   );

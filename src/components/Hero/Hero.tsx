@@ -3,7 +3,6 @@ import Dots from "../Dots/Dots";
 import { CSSProperties } from 'react';
 
 const Hero = () => {
-
   const handleArrowClick = () => {
     const startPosition = window.scrollY;
     const targetPosition = window.innerHeight;
@@ -35,54 +34,62 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative w-full h-screen overflow-hidden flex justify-center items-center bg-[#1D1D4D]">
-      <Dots />
-      <div className="flex flex-col justify-center items-center gap-5 p-12 pt-15 relative z-10">
-        <div className="flex justify-between items-center gap-5 w-full">
-          <div style={styles.textContainer as CSSProperties}>
-            <div className="flex justify-left w-full h-full pb-4">
-              <StaggeredText
-                text="I'm Jack"
-                className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-center text-white leading-tight m-0"
-                last={true}
-                delay={0}
-                stagger={0.11}
-                small={false}
-              />
-            </div>
-            <StaggeredText
-              text="Sophomore @ Rice University,"
-              className="text-white text-left font-serif text-xl md:text-2xl lg:text-3xl"
-              delay={1000}
-              last={false}
-              stagger={0.025}
-              small={true}
-            />
-            <StaggeredText
-              text="Mathematics and Computer Science"
-              className="text-white text-left font-serif text-xl md:text-2xl lg:text-3xl"
-              delay={1700}
-              last={false}
-              stagger={0.025}
-              small={true}
-            />
-          </div>
-          <div className="w-2/5">
-            <img
-              src="/Jack_Dzialo.jpg"
-              alt="Hero Banner"
-              className="rounded-full"
-              style={{ width: '90%', height: 'auto' }}
-            />
-          </div>
+<div className="relative w-full h-screen overflow-hidden flex justify-center items-center bg-[#1D1D4D]">
+  <Dots />
+  <div className="flex flex-col justify-center items-center gap-5 p-12 pt-15 relative z-10">
+    <div className="flex justify-between items-center gap-5 w-full">
+      <div style={styles.textContainer as CSSProperties}>
+        <div className="flex justify-left w-full h-full pb-4">
+          <StaggeredText
+            text="I'm Jack"
+            className="text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-center text-white leading-tight m-0"
+            last={true}
+            delay={0}
+            stagger={0.11}
+            small={false}
+            direction="left"
+          />
         </div>
-        <div
-          className="arrow mt-5"
-          style={{ transform: 'rotate(135deg) translateY(-250px) translateX(250px)', position: 'absolute' }}
-          onClick={handleArrowClick}
-        ></div>
+        <StaggeredText
+          text="Sophomore @ Rice University,"
+          className="text-white text-left font-serif text-xl md:text-2xl lg:text-3xl"
+          delay={1000}
+          last={false}
+          stagger={0.025}
+          small={true}
+          direction="right"
+        />
+            <div className="my-4"></div>
+        <StaggeredText
+          text="Mathematics and Computer Science"
+          className="text-white text-left font-serif text-xl md:text-2xl lg:text-3xl"
+          delay={1700}
+          last={false}
+          stagger={0.025}
+          small={true}
+          direction="left"
+        />
+      </div>
+      <div className="w-2/5">
+        <img
+          src="/Jack_Dzialo.jpg"
+          alt="Hero Banner"
+          className="rounded-full"
+          style={{ width: '90%', height: 'auto' }}
+        />
       </div>
     </div>
+    <div
+      className="arrow mt-5 always-white"
+      style={{
+        borderBlockColor: 'white',
+        transform: `rotate(135deg) translateY(-${220}px) translateX(${220}px)`,
+        position: 'absolute'
+      }}
+      onClick={handleArrowClick}
+    ></div>
+  </div>
+</div>
   );
 };
 
@@ -104,7 +111,7 @@ const styles = {
     fontSize: "48px",
     fontWeight: "bold",
     margin: "0 0 20px 0",
-},
+  },
   subtitle: {
     fontSize: "18px",
     margin: "0 0 30px 0",

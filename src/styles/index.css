@@ -48,11 +48,11 @@
         rgba(0, 0, 139, 1)
     );
 
-    @apply absolute h-[730%] w-[150%] left-[-20%] top-[-300%] content-[''] animate-border-spin;
+    @apply absolute h-[1730px] w-[1850px] left-[-100%] top-[-570%] content-[''] animate-border-spin;
   }
 
   .card-content {
-    @apply relative dark:bg-[#1a1a1a] bg-[#e5d5b5] p-4 rounded-lg
+    @apply relative dark:bg-[#1a1a1a] bg-slate-300 p-4 rounded-lg
   }
 
 
@@ -96,6 +96,12 @@ div.fadeOut {
 }
 
 
+div.arrow.always-white::before {
+  border-color: white !important;
+}
+div.arrow.always-white:hover::before {
+  border-color: #90EE90 !important;
+}
 
 .dark div.arrow::before {
   border-color: white;
