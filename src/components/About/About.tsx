@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+//import { docker } from "react-icons"
 import { fadeIn } from "../../types/AnmationTypes"; // Assuming fadeIn is defined in Types
 
 const About: React.FC = () => {
   const [isWideScreen, setIsWideScreen] = useState(window.innerWidth > 600);
+  const [isWideScreenText, setIsWideScreenText] = useState(
+    window.innerWidth > 800,
+  );
   const controls = useAnimation();
   const { ref, inView } = useInView({
     threshold: 0.1,
@@ -13,6 +17,7 @@ const About: React.FC = () => {
   useEffect(() => {
     const handleResize = () => {
       setIsWideScreen(window.innerWidth > 600);
+      setIsWideScreenText(window.innerWidth > 800);
     };
 
     window.addEventListener("resize", handleResize);
@@ -28,7 +33,7 @@ const About: React.FC = () => {
   }, [controls, inView]);
 
   return (
-    <div className="flex items-center justify-center h-screen">
+    <div className="flex items-center justify-center h-[80vh] mb-[-10px]">
       <motion.div
         ref={ref}
         animate={controls}
@@ -50,17 +55,27 @@ const About: React.FC = () => {
           </div>
         )}
         <div className="flex-1 justify-center items-center">
-          <h1 className="font-mono text-black dark:text-white pb-4">
+          <h1 className="font-bold font-mono text-black dark:text-white pb-4">
             About Me
           </h1>
           <div className="">
             <div className="card-wrapper p-1">
-              <div className="card-content font-mono text-black dark:text-white text-center sm:text-right">
-                I'm a student at Rice with a keen interest in all things
-                technology, looking to gain experience working on real life,
-                impactful projects. In my free time, I enjoy reading and playing
-                electric guitar.
-              </div>
+              {!isWideScreenText && (
+                <div className="card-content p-4 font-mono text-black dark:text-white text-center ">
+                  I'm a student at Rice with a keen interest in fullstack
+                  development looking to gain experience working on real life,
+                  impactful projects. In my free time, I enjoy reading and
+                  playing electric guitar.
+                </div>
+              )}
+              {isWideScreenText && (
+                <div className="card-content p-4 font-mono text-black dark:text-white text-center ">
+                  I'm a student at Rice University with a keen interest in fullstack
+                  development looking to gain experience working on real life,
+                  impactful projects. I have experience working with C++, GoLang, Python, and Typescript/Javascript. I love anything technology, and I enjoy learning and using different types of software/frameworks, such as Neovim, Linux, React, and Tailwind CSS. In my free time, I enjoy reading, solving puzzles, and
+                  playing electric guitar. Currently I'm reading the collected works of Anne Sexton, and I'm trying to learn how to play Angeles by Elliot Smith.
+                </div>
+              )}
             </div>
           </div>
         </div>

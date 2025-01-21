@@ -3,6 +3,7 @@ export interface Project {
   title: string;
   text: string;
   link: string;
+  img: string;
   // Add when implementing images
   // image?: string;
 }

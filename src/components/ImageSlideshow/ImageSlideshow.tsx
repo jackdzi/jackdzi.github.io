@@ -113,7 +113,7 @@ const ImageTrack = () => {
 
   return (
       <div className="justify-center items-center flex flex-col pb-4 mt-[300px] mb-[150px]">
-      <h2 className="text-3xl mb-2.5 font-mono text-black dark:text-white font-bold text-center">
+      <h2 className="text-3xl w-[95%] mb-2.5 font-mono text-black dark:text-white font-bold text-center">
         Click and drag to see some of my designs!
       </h2>
         <div className="flex justify-center items-center transform translate-x-[50%] max-w-full p-4 relative">
