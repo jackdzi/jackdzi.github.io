@@ -33,7 +33,7 @@ const About: React.FC = () => {
   }, [controls, inView]);
 
   return (
-    <div className="flex items-center justify-center h-[80vh] mb-[-10px]">
+    <div className="flex items-center justify-center mt-16 h-[80vh] mb-[20px]">
       <motion.div
         ref={ref}
         animate={controls}
@@ -72,8 +72,8 @@ const About: React.FC = () => {
                 <div className="card-content p-4 font-mono text-black dark:text-white text-center ">
                   I'm a student at Rice University with a keen interest in fullstack
                   development looking to gain experience working on real life,
-                  impactful projects. I have experience working with C++, GoLang, Python, and Typescript/Javascript. I love anything technology, and I enjoy learning and using different types of software/frameworks, such as Neovim, Linux, React, and Tailwind CSS. In my free time, I enjoy reading, solving puzzles, and
-                  playing electric guitar. Currently I'm reading the collected works of Anne Sexton, and I'm trying to learn how to play Angeles by Elliot Smith.
+                  impactful projects. I have experience working with C++, GoLang, Python, Typescript/Javascript, R, and SQL. I love anything technology, and I enjoy learning and using different types of software, such as Latex, Neovim, Linux, and React. In my free time, I like to read, solve puzzles, and
+                  play electric guitar. Currently I'm reading To The Lighthouse by Virginia Woolf, and I'm trying to learn how to play Angeles by Elliot Smith.
                 </div>
               )}
             </div>
